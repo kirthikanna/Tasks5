@@ -1,9 +1,10 @@
 #write a python code using lambda function to check
 # every element of a list is an integer or string
-my_list = [1,3,5,"apple","orange" ]
-
-# Use a lambda function with the filter() function to check if all elements are either integers or strings
-results = list(map(lambda x: isinstance(x, (int,str)), my_list))
-
-# Print the result
-print(results)
+# When dealing with mixed data types in a list,
+# isinstance() can be used to filter elements based on their type.
+# For example, to separate integers and strings from a list.
+data = ['apple', 3, 'banana', 2, 'cherry']
+find_integers = filter(lambda x: isinstance(x,int), data)
+find_strings = filter(lambda x: isinstance(x,str), data)
+print(list(find_integers))
+print(list(find_strings))
