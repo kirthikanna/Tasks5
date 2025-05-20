@@ -1,68 +1,53 @@
-from functools import reduce
+#A.E-mail Address
 import re
-class mail:
-    special_char = ['!', '#', '@', '$', '%', '^', '&', '*', '_', ' ', ':']
-    def __init__(self, email, mobile, password):
-        self.email = email
-        self.mobile = mobile
-        self.password = password
-    def user_address(self):
-        self.low = str.lower(self.email)
-        self.b = re.split("@", self.low)
-        # print(self.b[0])
-        if len(self.low) <= 30:
-            for i in self.b[0]:
-                for j in self.special_char:
-                    if i == j:
-                        print("invalid because usage of special character not allowed")
-                        break
-        elif self.b[1] != "gmail.com":
-            print("invalid email because of user address is not in format")
-        else:  # if the length is not matching it will throw an error
-            print("invalid email", self.email)
-    def mobile_number(self):
-        if len(self.mobile) == 7:
-            if self.mobile.isnumeric():
-                print("valid bangladesh mobile number\n", self.mobile)
-            else:
-                print("enter number not valid usage of characters rather than numbers")
-        else:
-            print("entered number is not valid")
+# Function to validate email
+# Regular expression pattern for a valid email address
+def validate_email_address(given_email):
+    email_pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    # Check if the email matches the regex pattern
+    if re.match(email_pattern, given_email):
+        return True
+    else:
+        return False
+
+given_email = input("Enter E-mail:")
+
+if validate_email_address(given_email):
+    print("Valid E-mail Address")
+else:
+    print("Invalid E-mail Address")
+
+#B. Mobile Number of Bangladesh
+def validate_bangladesh_number(mobile_number):
+    mobile_pattern = r"^(?:\+88)?01[3-9]\d{8}$"
+    # Check if the email matches the regex pattern
+    if re.match(mobile_pattern, mobile_number):
+        return True
+    else:
+        return False
+
+mobile_number = input("Enter Mobile Number With Country Code:")
+
+if validate_bangladesh_number(mobile_number):
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")
+
+#C. Telephone Number of Bangladesh
+def validate_usa_number(usa_mobile_number):
+    usa_mobile_pattern = r"^(?:\+1\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$"
+    # Check if the email matches the regex pattern
+    if re.match(usa_mobile_pattern, usa_mobile_number):
+        return True
+    else:
+        return False
+
+usa_mobile_number = input("Enter Mobile Number With Country Code:")
+
+if validate_usa_number(mobile_number):
+    print("Valid mobile number")
+else:
+    print("Invalid mobile number")
 
 
-    def pass_word(self, up, low, number, special):
-        self.up = 0
-        self.low = 0
-        self.number = 0
-        self.special = 0
-        if len(self.password) == 16:
-            print("the given password length is matching")
-            for i in self.password:
-                if i.isupper():
-                    # print(type(self.up))
-                    self.up += 1
-                # print(self.up)
-                if i.islower():
-                    self.low += 1
-                # print(self.low)
-                if i.isdigit():
-                    self.number += 1
-                    # print(type(self.number))
-                    # print(self.number)
-                if i == '@' or i == '#' or i == '$' or i == '%' or i == '&':
-                    self.special += 1
-                    # print(self.special)
-            # print(self.up+self.low+self.number+self.special)
-            if self.up >= 1 and self.low >= 1 and self.number >= 1 and self.special >= 1 and (
-                    self.up + self.low + self.number + self.special) == len(self.password):
-                print("password is valid", self.password)
-            else:
-                print("given password is invalid")
-        else:
-            print("the given length is more or lesser than specified length")
 
-
-obj = mail("Keerthana20@gmail.com", "1234567",  "Keerthana@67")
-obj.user_address()
-obj.mobile_number()
-obj.pass_word('up', 'low', 'number', 'special')
